@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home Page";
+}
+
+<body class="layout-custom">
+    <h1 style="text-align: center" class="font-custom">Every Batch From The Scratch</h1>
+    <hr/>
+    <div class="demo coursemeal">
+
+        <div class="coursemeal__div ">
+
+            <picture class="responsive-img">
+                <img src="../../images/desserts.jpg" alt="Dessert">
+            </picture>
+
+            <div class="coursemeal-info">
+                <a asp-area="" asp-controller="Cake" asp-action="CakeList" class="coursemeal-info__link">Cake</a>
+            </div>
+        </div>
+
+        <div class="coursemeal__div">
+
+            <picture class="responsive-img">
+                <img src="../../images/coffee.jpg" alt="Coffee">
+            </picture>
+
+            <div class="coursemeal-info">
+                <a asp-area="" asp-controller="Drink" asp-action="DrinkList" class="coursemeal-info__link">Coffee</a>
+            </div>
+        </div>
+
+        <div class="coursemeal__div">
+
+            <picture class="responsive-img">
+                <img src="../../images/smmothie.jpg" alt="Smoothie">
+            </picture>
+
+            <div class="coursemeal-info">
+                <a asp-area="" asp-controller="Drink" asp-action="DrinkList" class="coursemeal-info__link font-custom">Smoothie</a>
+            </div>
+        </div>
+
+
+    </div>
+</body>

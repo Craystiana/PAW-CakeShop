@@ -1,0 +1,161 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ReservationDetails";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<body class="layout-custom">
+    <h1 class="font-custom" style="text-align: center">Our Order</h1>
+    <hr />
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="../../images/logo.png" alt="" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>Order #1</h5>
+                        <h6>Cakes and Drinks</h6>
+                        <div class="dropdown show col-md-12" style="margin-left: 500px; margin-top: -60px">
+                            <div class="nav-link text-dark dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Change Status</div>
+                            <div class="dropdown-menu color-beige dropdown-item-custom" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-item dropdown-item">New</div>
+                                <div class="dropdown-item dropdown-item">In Progress</div>
+                                <div class="dropdown-item dropdown-item">Done</div>
+                                <div class="dropdown-item dropdown-item">Canceled</div>
+                            </div>
+                        </div>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Items</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row-custom">
+                <div>
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Employee</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Michele Miller</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Customer</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Anne Marie</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Customer Phone Number</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>123456789</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Order Status</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>New</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Customer Address</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>City Craiova, Str. Lalelelor, Nr.1</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Total Price</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>100 RON</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Item #1</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Cheesecake</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>4</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Item #2</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Brownie</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>3</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Item #3</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Macarons</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>2</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Item #4</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Red Velvet</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>1</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Item #5</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Purple Smoothie</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

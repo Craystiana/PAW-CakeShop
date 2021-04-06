@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ReservationList";
+}
+
+<body class="layout-custom">
+    <h1 class="font-custom" style="text-align:center">Our Orders</h1>
+    <hr />
+    <div class="container-reservation">
+        <div class="card-reservation">
+
+            <div class="front-reservation side-reservation">
+                <h1 class="logo-reservation">Order #1</h1>
+            </div>
+
+            <div class="back-reservation side-reservation">
+                <h3 class="name-reservation"><a asp-area="" asp-controller="Reservation" asp-action="ReservationDetails">Order #1</a></h3>
+                <div>Cakes and Drinks</div>
+                <div class="info-reservation">
+                    <p><span class="property-reservation">Employee: </span>hello@zachsaucier.com</p>
+                    <p><span class="property-reservation">Customer: </span>ZachSaucier</p>
+                    <p><span class="property-reservation">Customer Phone: </span>(123) 456-7890</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-reservation">
+        <div class="card-reservation second">
+
+            <div class="front-reservation side-reservation">
+                <h1 class="logo-reservation">Order #2</h1>
+            </div>
+
+            <div class="back-reservation side-reservation">
+                <h3 class="name-reservation">Order #2</h3>
+                <div>Cakes</div>
+                <div class="info-reservation">
+                    <p><span class="property-reservation">Employee: </span>hello@zachsaucier.com</p>
+                    <p><span class="property-reservation">Customer: </span>ZachSaucier</p>
+                    <p><span class="property-reservation">Customer Phone: </span>(123) 456-7890</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-reservation">
+        <div class="card-reservation third">
+
+            <div class="front-reservation side-reservation">
+                <h1 class="logo-reservation">Order #3</h1>
+            </div>
+
+            <div class="back-reservation side-reservation">
+                <h3 class="name-reservation">Order #3</h3>
+                <div>Drinks</div>
+                <div class="info-reservation">
+                    <p><span class="property-reservation">Employee: </span>hello@zachsaucier.com</p>
+                    <p><span class="property-reservation">Customer: </span>ZachSaucier</p>
+                    <p><span class="property-reservation">Customer Phone: </span>(123) 456-7890</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

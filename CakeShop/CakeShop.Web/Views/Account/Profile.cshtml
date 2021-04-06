@@ -1,0 +1,155 @@
+﻿@model CakeShop.Web.Models.Account.ProfileViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "EmployeeDetails";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<body class="layout-custom">
+    <h1 class="font-custom" style="text-align: center">Profile</h1>
+    <hr />
+    <div class="container emp-profile">
+        <form method="post" asp-action="EditProfile" asp-controller="Account">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="../../images/woman.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>Michele Miller</h5>
+                        <h6>Baker</h6>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Orders</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row-custom">
+                <div>
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>First Name</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="input" asp-for="FirstName" disabled></input>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Last Name</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="input" asp-for="LastName" disabled></input>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Gender</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="input" asp-for="Gender" disabled></input>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Email Address</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="input" asp-for="EmailAddress" disabled></input>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Phone Number</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="input" asp-for="PhoneNumber" disabled />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Profession</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Baker</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Address</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="input" asp-for="Address" disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Order #1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Order #4</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Order #6</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/> <br/>
+            <div class="form-group">
+                <div style="margin-top: 1em; text-align: center;">
+                    <button type="submit" id="edit-profile-save-btn" class="btn btn-primary" style="display:none">Save</button>
+                    <a id="edit-link"
+                       style="color: var(--fd-orange); cursor: pointer"
+                       onclick="toggleEdit()">
+                        Something doesn't look right? Edit your details!
+                    </a>
+                    <a id="cancel-link"
+                       style="color: var(--fd-orange); display: none"
+                       href="@Url.Action("Profile", "Account")">
+                        Everything looks ok? Cancel!
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    function toggleEdit() {
+        var cancelLink = document.getElementById('cancel-link');
+        var editLink = document.getElementById('edit-link');
+        var inputFields = document.getElementsByClassName('input');
+        var saveBtn = document.getElementById('edit-profile-save-btn');
+
+        editLink.style.display = "none";
+        cancelLink.style.display = "block";
+        saveBtn.style.display = "block";
+
+        for (var index = 0; index < inputFields.length; index++) {
+            inputFields[index].disabled = false;
+        }
+    }
+</script>
