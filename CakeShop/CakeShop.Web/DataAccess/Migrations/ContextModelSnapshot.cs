@@ -30,9 +30,6 @@ namespace CakeShop.Web.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
                     b.HasKey("IngredientId");
 
                     b.ToTable("Ingredient");
@@ -51,7 +48,7 @@ namespace CakeShop.Web.DataAccess.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("OrderDate")
+                    b.Property<DateTime?>("OrderDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("OrderId");
@@ -100,7 +97,6 @@ namespace CakeShop.Web.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Photo")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Price")
@@ -264,7 +260,7 @@ namespace CakeShop.Web.DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("CakeShop.Web.DataAccess.Entities.Product", "Product")
-                        .WithMany("Ingredients")
+                        .WithMany("ProductIngredients")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

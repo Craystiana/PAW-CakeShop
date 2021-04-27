@@ -22,13 +22,10 @@ namespace CakeShop.Web.DataAccess.Entities
         [Required]
         public int ProductTypeId { get; set; }
 
-        [Required]
         public virtual ProductType ProductType { get; set; }
 
-        [Required]
         public byte[] Photo { get; set; }
 
-        [Required]
-        public virtual ICollection<ProductIngredient> Ingredients { get; set; }
+        public virtual ICollection<ProductIngredient> ProductIngredients { get; set; }
     }
 }

@@ -16,13 +16,11 @@ namespace CakeShop.Web.DataAccess.Entities
         [Required]
         public int ProductId { get; set; }
 
-        [Required]
         public virtual Product Product { get; set; }
 
         [Required]
         public int IngredientId { get; set; }
 
-        [Required]
         public virtual Ingredient Ingredient { get; set; }
 
         [Required]

@@ -11,8 +11,5 @@ namespace CakeShop.Web.DataAccess.Entities
 
         [Required]
         public string Name { get; set; }
-
-        [Required]
-        public int Price { get; set; }
     }
 }

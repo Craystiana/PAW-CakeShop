@@ -35,7 +35,6 @@ namespace CakeShop.Web.DataAccess.Entities
         [Required]
         public int UserRoleId { get; set; }
 
-        [Required]
         public virtual UserRole UserRole { get; set; }
         
         [ForeignKey("ClientId")]

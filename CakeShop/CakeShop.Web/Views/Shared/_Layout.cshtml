@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using CakeShop.Web.Common.Enums 
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,9 +23,10 @@
                             <div class="dropdown show">
                                 <a class="nav-link text-dark dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i></a>
                                 <div class="dropdown-menu color-beige dropdown-item-custom" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Cake" asp-action="CakeList">Cakes</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Drink" asp-action="DrinkList">Drinks</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Reservation" asp-action="ReservationList">Reservations</a>
+                                    <a class="dropdown-item" href="@Url.Action("List", "Product", new { productType = (int)ProductType.Cake})">Cakes</a>
+                                    <a class="dropdown-item" href="@Url.Action("List", "Product", new { productType = (int)ProductType.Drink})">Drinks</a>
+                                    <a class="dropdown-item" href="@Url.Action("List", "Product", new { productType = (int)ProductType.Coffee})">Coffee</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Order" asp-action="List">Reservations</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Employee" asp-action="EmployeeList">Employees</a>
                                 </div>
                             </div>

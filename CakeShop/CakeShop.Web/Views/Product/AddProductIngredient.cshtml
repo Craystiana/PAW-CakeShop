@@ -1,0 +1,38 @@
+﻿@model CakeShop.Web.Models.ProductIngredient.ProductIngredientViewModel
+
+@{
+    ViewData["Title"] = "AddProductIngredient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align: center" class="font-custom">Add Product Ingredient</h1>
+<hr />
+<body class="layout-custom">
+    <section class="container-fluid">
+        <section class="row justify-content-center">
+            <div class="form-custom color-beige">
+                <form asp-action="AddProductIngredient" class="form-container form-padding">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ProductId" />
+                    <div class="form-group">
+                        <label asp-for="IngredientName" class="control-label"></label>
+                        <input asp-for="IngredientName" class="form-control" />
+                        <span asp-validation-for="IngredientName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="control-label"></label>
+                        <input asp-for="Quantity" class="form-control" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" style="margin-left: 135px" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+         </section>
+    </section>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

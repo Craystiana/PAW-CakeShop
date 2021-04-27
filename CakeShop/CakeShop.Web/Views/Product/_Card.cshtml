@@ -1,0 +1,25 @@
+﻿@using CakeShop.Web.Models.Product
+@using CakeShop.Web.Common.Enums
+
+@model ProductViewModel
+
+@{
+    var base64 = Convert.ToBase64String(Model.Photo);
+    var img = String.Format("data:image/jpg;base64,{0}", base64);
+}
+
+
+<article class="card card--1">
+    <div class="card__img"></div>
+    <a href="#" class="card_link">
+        <div class="card__img--hover" style="background: url(@img)"></div>
+    </a>
+    <div class="card__info">
+        <span class="card__category">@Enum.GetName(typeof(ProductType), Model.ProductTypeId)</span>
+        <a href="@Url.Action("Details", "Product", new { productId = Model.ProductId })">
+            <h3 class="card__title">@Model.ProductName</h3>
+        </a>
+        <span class="card__by">@Model.ProductPrice RON</span>
+        <button style="margin-left: 100px" class="btn btn-primary" type="button"><i class="fa fa-shopping-cart"></i></button>
+    </div>
+</article>

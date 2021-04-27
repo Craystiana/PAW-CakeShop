@@ -1,0 +1,48 @@
+﻿@using CakeShop.Web.Models.Product
+@using CakeShop.Web.Common.Enums
+
+@model ProductViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ProductDetails";
+
+    var base64 = Convert.ToBase64String(Model.Photo);
+    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+}
+
+<body class="layout-custom">
+    <h1 class="font-custom" style="text-align: center">Our @Enum.GetName(typeof(ProductType), Model.ProductTypeId)</h1>
+    <hr />
+    <div class="card-cake-container">
+        <div class="card-cake u-clearfix">
+            <div class="card-cake-body">
+                <form method="post" asp-action="Edit" asp-controller="Product">
+                    <h2 class="card-cake-title">@Model.ProductName</h2>
+                    <span class="card-cake-description subtle">
+                        <div>
+                            <h2>Ingredients &nbsp;&nbsp; <button class="btn btn-primary font-custom" type="button" onclick="window.location.href='@Url.Action("AddProductIngredient", "Product", new { productId = Model.ProductId})'">Add Ingredient</button></h2>
+                            <hr>
+                            <ul>
+                                @foreach (var ingredient in Model.Ingredients)
+                                {
+                                <li>@ingredient.IngredientName - @ingredient.Quantity grams &nbsp;&nbsp; <button class="btn" type="button" onclick="window.location.href='@Url.Action("DeleteIngredient", "Product", new {productId = Model.ProductId, ingredientId = ingredient.IngredientId})'">x</button></li>
+                                }
+                            </ul>
+                        </div>
+                        <br /><br />
+                        <div>
+                            <h4>Price: @Model.ProductPrice</h4>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" type="button"><i class="fa fa-shopping-cart"></i></button>
+                            <button class="btn btn-primary" type="button"><i class="fa fa-trash" onclick="window.location.href='@Url.Action("DeleteProduct", "Product", new {productId = Model.ProductId, productTypeId = Model.ProductTypeId})'"></i></button>
+                        </div>
+                    </span>
+                </form>
+            </div>
+            <img src="@imgSrc" alt="" class="card-cake-media" />
+        </div>
+        <div class="card-cake-shadow"></div>
+    </div>
+</body>

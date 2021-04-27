@@ -1,4 +1,6 @@
-﻿@{
+﻿@using CakeShop.Web.Common.Enums
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Home Page";
 }
@@ -15,7 +17,7 @@
             </picture>
 
             <div class="coursemeal-info">
-                <a asp-area="" asp-controller="Cake" asp-action="CakeList" class="coursemeal-info__link">Cake</a>
+                <a href="@Url.Action("List", "Product", new { productType = (int)ProductType.Cake})" class="coursemeal-info__link">Cake</a>
             </div>
         </div>
 
@@ -26,7 +28,7 @@
             </picture>
 
             <div class="coursemeal-info">
-                <a asp-area="" asp-controller="Drink" asp-action="DrinkList" class="coursemeal-info__link">Coffee</a>
+                <a href="@Url.Action("List", "Product", new { productType = (int)ProductType.Coffee})" class="coursemeal-info__link">Coffee</a>
             </div>
         </div>
 
@@ -37,7 +39,7 @@
             </picture>
 
             <div class="coursemeal-info">
-                <a asp-area="" asp-controller="Drink" asp-action="DrinkList" class="coursemeal-info__link font-custom">Smoothie</a>
+                <a href="@Url.Action("List", "Product", new { productType = (int)ProductType.Drink})" class="coursemeal-info__link font-custom">Smoothie</a>
             </div>
         </div>
 

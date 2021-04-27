@@ -46,6 +46,20 @@ a:active{
 	border-color: #f8bcbb !important;
 }
 
+.btn-custom {
+	text-align: center !important;
+	color: #3B3B3B !important;
+	background-color: #f8bcbb !important;
+	border-color: #f7f5ec !important;
+	border-width: 3px !important;
+}
+
+.btn-custom:hover, .btn-custom:active, .btn-custom:active {
+	color: #3B3B3B !important;
+	background-color: #f8bcbb !important;
+	border-color: #f7f5ec !important;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
 	color: #f7f5ec;
 	background-color: #bc3484 !important;
@@ -503,7 +517,7 @@ body {
 .card-cake-body {
 	display: inline-block;
 	float: left;
-	width: 310px;
+	width: 60%;
 }
 
 .card-cake-number {
@@ -535,7 +549,7 @@ body {
 	font-weight: 300;
 	line-height: 60px;
 	margin: 10px 0;
-	margin-left: 200px;
+	text-align: center;
 }
 
 .card-cake-description {

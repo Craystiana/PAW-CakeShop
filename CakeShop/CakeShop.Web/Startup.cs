@@ -1,15 +1,13 @@
 using CakeShop.Web.DataAccess;
+using CakeShop.Web.DataAccess.Entities;
+using CakeShop.Web.DataAccess.Repository;
+using CakeShop.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CakeShop.Web
 {
@@ -26,7 +24,19 @@ namespace CakeShop.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
+
+            services.AddScoped<IRepository<User>, Repository<User>> ();
+            services.AddScoped<IRepository<Product>, ProductRepository>();
+            services.AddScoped<IRepository<Order>, OrderRepository>();
+            services.AddScoped<IRepository<ProductIngredient>, Repository<ProductIngredient>>();
+            services.AddScoped<IRepository<Ingredient>, Repository<Ingredient>>();
+
+            services.AddScoped<UserService>();
+            services.AddScoped<ProductService>();
+            services.AddScoped<OrderService>();
+            services.AddScoped<IngredientService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

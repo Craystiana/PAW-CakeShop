@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\An3Sem2\\PAW\\CakeShop\\CakeShop\\CakeShop.Web\\CakeShop.Web.csproj": {}
+    "D:\\An3Sem2\\PAW\\PAW-CakeShop\\CakeShop\\CakeShop.Web\\CakeShop.Web.csproj": {}
   },
   "projects": {
-    "D:\\An3Sem2\\PAW\\CakeShop\\CakeShop\\CakeShop.Web\\CakeShop.Web.csproj": {
+    "D:\\An3Sem2\\PAW\\PAW-CakeShop\\CakeShop\\CakeShop.Web\\CakeShop.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\An3Sem2\\PAW\\CakeShop\\CakeShop\\CakeShop.Web\\CakeShop.Web.csproj",
+        "projectUniqueName": "D:\\An3Sem2\\PAW\\PAW-CakeShop\\CakeShop\\CakeShop.Web\\CakeShop.Web.csproj",
         "projectName": "CakeShop.Web",
-        "projectPath": "D:\\An3Sem2\\PAW\\CakeShop\\CakeShop\\CakeShop.Web\\CakeShop.Web.csproj",
+        "projectPath": "D:\\An3Sem2\\PAW\\PAW-CakeShop\\CakeShop\\CakeShop.Web\\CakeShop.Web.csproj",
         "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-        "outputPath": "D:\\An3Sem2\\PAW\\CakeShop\\CakeShop\\CakeShop.Web\\obj\\",
+        "outputPath": "D:\\An3Sem2\\PAW\\PAW-CakeShop\\CakeShop\\CakeShop.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\crist\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.13, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.13, )"

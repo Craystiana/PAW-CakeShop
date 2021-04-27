@@ -1,0 +1,33 @@
+﻿@using CakeShop.Web.Models.Order
+
+@model IEnumerable<OrderViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "OrderList";
+}
+
+<body class="layout-custom">
+    <h1 class="font-custom" style="text-align:center">Our Orders</h1>
+    <hr />
+    @foreach (var order in Model)
+    {
+        <div class="container-reservation">
+            <div class="card-reservation">
+
+                <div class="front-reservation side-reservation">
+                    <h1 class="logo-reservation">Order #@order.OrderId</h1>
+                </div>
+
+                <div class="back-reservation side-reservation">
+                    <h3 class="name-reservation"><a href="@Url.Action("Details", "Order", new { orderId = order.OrderId})">Order #@order.OrderId</a></h3>
+                    <div class="info-reservation">
+                        <p><span class="property-reservation">Employee: </span>@order.Employee.LastName @order.Employee.FirstName</p>
+                        <p><span class="property-reservation">Customer: </span>@order.Customer.LastName @order.Customer.FirstName</p>
+                        <p><span class="property-reservation">Customer Phone: </span>@order.Customer.PhoneNumber</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>

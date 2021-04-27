@@ -1,0 +1,49 @@
+﻿@using CakeShop.Web.Models.Product
+@using CakeShop.Web.Common.Enums
+
+@model ProductViewModel
+
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="layout-custom">
+    <h1  style="text-align: center" class="font-custom">Add @Enum.GetName(typeof(ProductType), Model.ProductTypeId)</h1>
+    <hr />
+    <section class="container-fluid">
+        <section class="row justify-content-center">
+            <div class="form-custom color-beige">
+                <form asp-action="Add" enctype="multipart/form-data" class="form-container form-padding">
+                    <h2 style="text-align:center" class="font-custom">@Enum.GetName(typeof(ProductType), Model.ProductTypeId)</h2>
+                    <hr />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ProductId" />
+                    <input type="hidden" asp-for="ProductTypeId" />
+                    <div class="form-group">
+                        <label asp-for="ProductName" class="control-label"></label>
+                        <input asp-for="ProductName" class="form-control" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductPrice" class="control-label"></label>
+                        <input asp-for="ProductPrice" class="form-control" />
+                        <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductImage" class="control-label"></label>
+                        <input type="file" asp-for="ProductImage" />
+                        <span asp-validation-for="ProductImage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input style="margin-left: 140px" type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </section>
+    </section>
+</body>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
