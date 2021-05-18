@@ -10,9 +10,9 @@ namespace CakeShop.Web.Models.Order
     {
         public int OrderId { get; set; }
 
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
 
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
 
         public DateTime? OrderDate { get; set; }
 

@@ -1,10 +1,10 @@
-﻿using CakeShop.Web.Models.Account;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace CakeShop.Web.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly ILogger<CartController> _logger;

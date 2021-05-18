@@ -10,6 +10,8 @@ namespace CakeShop.Web.DataAccess.Repository
     {
         TEntity Get(int id);
 
+        TEntity Get(string id);
+
         IEnumerable<TEntity> GetAll();
 
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);

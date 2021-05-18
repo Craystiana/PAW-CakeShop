@@ -1,4 +1,12 @@
-﻿@using CakeShop.Web.Common.Enums 
+﻿@using Enum = CakeShop.Web.Common.Enums
+@using Microsoft.AspNetCore.Identity
+@using CakeShop.Web.DataAccess.Entities
+@using System.Security.Claims
+
+@await Component.InvokeAsync("NToastNotify")
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +31,9 @@
                             <div class="dropdown show">
                                 <a class="nav-link text-dark dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i></a>
                                 <div class="dropdown-menu color-beige dropdown-item-custom" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="@Url.Action("List", "Product", new { productType = (int)ProductType.Cake})">Cakes</a>
-                                    <a class="dropdown-item" href="@Url.Action("List", "Product", new { productType = (int)ProductType.Drink})">Drinks</a>
-                                    <a class="dropdown-item" href="@Url.Action("List", "Product", new { productType = (int)ProductType.Coffee})">Coffee</a>
+                                    <a class="dropdown-item" href="@Url.Action("List", "Product", new { productType = (int)Enum.ProductType.Cake})">Cakes</a>
+                                    <a class="dropdown-item" href="@Url.Action("List", "Product", new { productType = (int)Enum.ProductType.Drink})">Drinks</a>
+                                    <a class="dropdown-item" href="@Url.Action("List", "Product", new { productType = (int)Enum.ProductType.Coffee})">Coffee</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Order" asp-action="List">Reservations</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Employee" asp-action="EmployeeList">Employees</a>
                                 </div>
@@ -39,6 +47,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area"" asp-controller="Account" asp-action="Login"><i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area"" asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i></a>
                         </li>
                     </ul>
                 </div>

@@ -1,6 +1,7 @@
 ﻿using CakeShop.Web.Models.Product;
 using CakeShop.Web.Models.ProductIngredient;
 using CakeShop.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -54,6 +55,7 @@ namespace CakeShop.Web.Controllers
             return View("~/Views/Product/ProductDetails.cshtml", product);
         }
 
+        [Authorize(Roles = "Baker,BakerHelper,CakeDecorator,Barista,Barman")]
         [HttpGet]
         public IActionResult Add(int productType)
         {
@@ -65,6 +67,7 @@ namespace CakeShop.Web.Controllers
             return View("~/Views/Product/Add.cshtml", model);
         }
 
+        [Authorize(Roles = "Baker,BakerHelper,CakeDecorator,Barista,Barman")]
         [HttpPost]
         public IActionResult Add(ProductViewModel model)
         {
@@ -72,6 +75,7 @@ namespace CakeShop.Web.Controllers
             return RedirectToAction("List", "Product", new { productType = model.ProductTypeId});
         }
 
+        [Authorize(Roles = "Baker,BakerHelper,CakeDecorator,Barista,Barman")]
         [HttpGet]
         public IActionResult AddProductIngredient(int productId)
         {
@@ -83,6 +87,7 @@ namespace CakeShop.Web.Controllers
             return View("~/Views/Product/AddProductIngredient.cshtml", model);
         }
 
+        [Authorize(Roles = "Baker,BakerHelper,CakeDecorator,Barista,Barman")]
         [HttpPost]
         public IActionResult AddProductIngredient(ProductIngredientViewModel model)
         {
@@ -99,12 +104,14 @@ namespace CakeShop.Web.Controllers
 
         }
 
+        [Authorize(Roles = "Baker,BakerHelper,CakeDecorator,Barista,Barman")]
         public IActionResult DeleteIngredient(int productId, int ingredientId)
         {
             _productService.DeleteProductIngredient(productId, ingredientId);
             return RedirectToAction("Details", new { productId = productId });
         }
 
+        [Authorize(Roles = "Baker,BakerHelper,CakeDecorator,Barista,Barman")]
         public IActionResult DeleteProduct(int productId, int productTypeId)
         {
             _productService.DeleteProduct(productId);

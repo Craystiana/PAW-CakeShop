@@ -1,10 +1,11 @@
-﻿using CakeShop.Web.Models.Account;
-using CakeShop.Web.Services;
+﻿using CakeShop.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace CakeShop.Web.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly ILogger<OrderController> _logger;

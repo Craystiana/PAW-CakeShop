@@ -1,10 +1,10 @@
-﻿using CakeShop.Web.Models.Account;
-using CakeShop.Web.Services;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace CakeShop.Web.Controllers
 {
+    [Authorize(Roles = "GeneralManager,Director")]
     public class EmployeeController : Controller
     {
         private readonly ILogger<EmployeeController> _logger;

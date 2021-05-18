@@ -4,7 +4,7 @@ namespace CakeShop.Web.Models.User
 {
     public class UserViewModel
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public string FirstName { get; set; }
 
@@ -17,7 +17,5 @@ namespace CakeShop.Web.Models.User
         public string Address { get; set; }
 
         public string PhoneNumber { get; set; }
-
-        public int UserRoleId { get; set; }
     }
 }

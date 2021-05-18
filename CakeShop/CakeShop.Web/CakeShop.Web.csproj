@@ -20,8 +20,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="DataAccess\Migrations\20210404163436_InitialCreate.cs" />
+    <Compile Remove="DataAccess\Migrations\20210404163436_InitialCreate.Designer.cs" />
     <Compile Remove="DataAccess\Migrations\20210425133515_RefactorDatabase.cs" />
     <Compile Remove="DataAccess\Migrations\20210425133515_RefactorDatabase.Designer.cs" />
+    <Compile Remove="DataAccess\Migrations\20210425170132_RefactorDatabase.cs" />
+    <Compile Remove="DataAccess\Migrations\20210425170132_RefactorDatabase.Designer.cs" />
+    <Compile Remove="DataAccess\Migrations\20210516194910_IntegrateIdentity.cs" />
+    <Compile Remove="DataAccess\Migrations\20210516194910_IntegrateIdentity.Designer.cs" />
+    <Compile Remove="Migrations\20210516195318_InitialCreate.cs" />
+    <Compile Remove="Migrations\20210516195318_InitialCreate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,19 +38,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
+    <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="NToastNotify" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="DataAccess\Identity\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

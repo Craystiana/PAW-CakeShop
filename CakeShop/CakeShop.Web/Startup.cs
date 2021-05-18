@@ -1,9 +1,11 @@
+using AspNetCoreHero.ToastNotification;
 using CakeShop.Web.DataAccess;
 using CakeShop.Web.DataAccess.Entities;
 using CakeShop.Web.DataAccess.Repository;
 using CakeShop.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,8 +26,13 @@ namespace CakeShop.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
+            services.AddMvc().AddNToastNotifyToastr();
 
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
+            services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<Context>();
 
             services.AddScoped<IRepository<User>, Repository<User>> ();
             services.AddScoped<IRepository<Product>, ProductRepository>();
@@ -57,13 +64,17 @@ namespace CakeShop.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseNToastNotify();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }

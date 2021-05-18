@@ -9,7 +9,7 @@
 <section class="container-fluid">
     <section class="row justify-content-center">
         <div class="form-custom color-beige">
-            <form asp-action="Register" class="form-container form-padding">
+            <form asp-action="Register" class="form-container form-padding" enctype="multipart/form-data">
                 <h4 class="text-center font-weight-bold text-custom">Register</h4>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group text-custom">
@@ -21,6 +21,11 @@
                     <label asp-for="Password" class="control-label"></label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group text-custom">
+                    <label asp-for="ConfirmPassword" class="control-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
                 <div class="form-group text-custom">
                     <label asp-for="FirstName" class="control-label"></label>
@@ -38,14 +43,14 @@
                     <span asp-validation-for="Gender" class="text-danger"></span>
                 </div>
                 <div class="form-group text-custom">
-                    <label asp-for="PhoneNumber" class="control-label"></label>
-                    <input asp-for="PhoneNumber" class="form-control" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group text-custom">
                     <label asp-for="Address" class="control-label"></label>
                     <input asp-for="Address" class="form-control" />
                     <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Photo"></label>
+                    <input type="file" asp-for="Photo" />
+                    <span asp-validation-for="Photo" class="text-danger"></span>
                 </div>
                 <div class="form-group text-center">
                     <input type="submit" value="Sign Up" class="btn btn-primary" />

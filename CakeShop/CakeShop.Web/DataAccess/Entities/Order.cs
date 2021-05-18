@@ -12,12 +12,12 @@ namespace CakeShop.Web.DataAccess.Entities
         public int OrderId { get; set; }
 
         [Required]
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
 
         public virtual User Client { get; set; }
 
         [Required]
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
 
         public virtual User Employee { get; set; }
 

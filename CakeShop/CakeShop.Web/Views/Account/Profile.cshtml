@@ -3,12 +3,18 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "EmployeeDetails";
+
+    var imgSrc = "0";
+    if (Model.Photo != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Photo);
+        imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+    }
 }
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <body class="layout-custom">
     <h1 class="font-custom" style="text-align: center">Profile</h1>
@@ -18,13 +24,25 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="../../images/woman.jpg" alt="" />
+                        @if (Model.Photo == null)
+                        {
+                            @if (Model.Gender == "Female")
+                            {
+                                <img src="../../images/woman.jpg" alt="" />
+                            }
+                            else
+                            {
+                                <imd src="../../images/man.jpg" alt="" />
+                            }
+                         }else{
+                            <img src="@imgSrc" />
+                         }
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
-                        <h5>Michele Miller</h5>
-                        <h6>Baker</h6>
+                        <h5>@Model.FirstName @Model.LastName</h5>
+                        <h6>@Model.Role</h6>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -44,7 +62,7 @@
                                 <div class="col-md-4">
                                     <label>First Name</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input class="input" asp-for="FirstName" disabled />
                                 </div>
                             </div>
@@ -52,7 +70,7 @@
                                 <div class="col-md-4">
                                     <label>Last Name</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input class="input" asp-for="LastName" disabled />
                                 </div>
                             </div>
@@ -60,7 +78,7 @@
                                 <div class="col-md-4">
                                     <label>Gender</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input class="input" asp-for="Gender" disabled />
                                 </div>
                             </div>
@@ -68,7 +86,7 @@
                                 <div class="col-md-4">
                                     <label>Email Address</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input class="input" asp-for="EmailAddress" disabled />
                                 </div>
                             </div>
@@ -76,23 +94,23 @@
                                 <div class="col-md-4">
                                     <label>Phone Number</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input class="input" asp-for="PhoneNumber" disabled />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>Profession</label>
+                                    <label>Role</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <p>Baker</p>
+                                <div class="col-md-6">
+                                    <p>@Model.Role</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Address</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input class="input" asp-for="Address" disabled />
                                 </div>
                             </div>
@@ -120,7 +138,7 @@
             <br/> <br/>
             <div class="form-group">
                 <div style="margin-top: 1em; text-align: center;">
-                    <button type="submit" id="edit-profile-save-btn" class="btn btn-primary" style="display:none">Save</button>
+                    <button type="submit" id="edit-profile-save-btn" class="btn btn-primary" style="margin-left:500px; display:none">Save</button>
                     <a id="edit-link"
                        style="color: var(--fd-orange); cursor: pointer"
                        onclick="toggleEdit()">

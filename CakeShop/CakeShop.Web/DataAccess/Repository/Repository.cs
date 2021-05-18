@@ -35,6 +35,11 @@ namespace CakeShop.Web.DataAccess.Repository
             return _context.Set<TEntity>().Find(id);
         }
 
+        public TEntity Get(string id)
+        {
+            return _context.Set<TEntity>().Find(id);
+        }
+
         public IEnumerable<TEntity> GetAll()
         {
             return _context.Set<TEntity>().ToList();

@@ -30,25 +30,23 @@ namespace CakeShop.Web.Services
                     OrderDate = order.OrderDate,
                     Employee = new UserViewModel
                     {
-                        UserId = order.Employee.UserId,
+                        UserId = order.Employee.Id,
                         FirstName = order.Employee.LastName,
                         LastName = order.Employee.FirstName,
                         Gender = order.Employee.Gender,
-                        EmailAddress = order.Employee.EmailAddress,
+                        EmailAddress = order.Employee.Email,
                         Address = order.Employee.Address,
-                        PhoneNumber = order.Employee.PhoneNumber,
-                        UserRoleId = order.Employee.UserRoleId
+                        PhoneNumber = order.Employee.PhoneNumber
                     },
                     Customer = new UserViewModel
                     {
-                        UserId = order.Client.UserId,
+                        UserId = order.Client.Id,
                         FirstName = order.Client.LastName,
                         LastName = order.Client.FirstName,
                         Gender = order.Client.Gender,
-                        EmailAddress = order.Client.EmailAddress,
+                        EmailAddress = order.Client.Email,
                         Address = order.Client.Address,
-                        PhoneNumber = order.Client.PhoneNumber,
-                        UserRoleId = order.Client.UserRoleId
+                        PhoneNumber = order.Client.PhoneNumber
                     }
                 };
             }
@@ -67,25 +65,23 @@ namespace CakeShop.Web.Services
                 OrderDate = order.OrderDate,
                 Employee = new UserViewModel
                 {
-                    UserId = order.Employee.UserId,
+                    UserId = order.Employee.Id,
                     FirstName = order.Employee.LastName,
                     LastName = order.Employee.FirstName,
                     Gender = order.Employee.Gender,
-                    EmailAddress = order.Employee.EmailAddress,
+                    EmailAddress = order.Employee.Email,
                     Address = order.Employee.Address,
-                    PhoneNumber = order.Employee.PhoneNumber,
-                    UserRoleId = order.Employee.UserRoleId
+                    PhoneNumber = order.Employee.PhoneNumber
                 },
                 Customer = new UserViewModel
                 {
-                    UserId = order.Client.UserId,
+                    UserId = order.Client.Id,
                     FirstName = order.Client.LastName,
                     LastName = order.Client.FirstName,
                     Gender = order.Client.Gender,
-                    EmailAddress = order.Client.EmailAddress,
+                    EmailAddress = order.Client.Email,
                     Address = order.Client.Address,
-                    PhoneNumber = order.Client.PhoneNumber,
-                    UserRoleId = order.Client.UserRoleId
+                    PhoneNumber = order.Client.PhoneNumber
                 },
                 Products = new List<OrderItemViewModel>()
             };

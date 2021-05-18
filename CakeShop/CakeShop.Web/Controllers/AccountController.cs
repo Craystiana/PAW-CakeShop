@@ -1,12 +1,13 @@
-﻿using CakeShop.Web.Common.Enums;
-using CakeShop.Web.DataAccess;
-using CakeShop.Web.DataAccess.Entities;
-using CakeShop.Web.Models;
-using CakeShop.Web.Models.Account;
+﻿using CakeShop.Web.Models.Account;
 using CakeShop.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NToastNotify;
 using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace CakeShop.Web.Controllers
 {
@@ -14,11 +15,13 @@ namespace CakeShop.Web.Controllers
     {
         private readonly ILogger<AccountController> _logger;
         private readonly UserService _userService;
+        private readonly IToastNotification _notyf;
 
-        public AccountController(ILogger<AccountController> logger, UserService userService)
+        public AccountController(ILogger<AccountController> logger, UserService userService, IToastNotification notyf)
         {
             _logger = logger;
             _userService = userService;
+            _notyf = notyf;
         }
 
         public IActionResult Index()
@@ -27,86 +30,123 @@ namespace CakeShop.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Register()
         {
-            return View("~/Views/Account/Login.cshtml");
-        }
-
-        [HttpPost]
-        public IActionResult Login(LoginViewModel model)
-        {
-            try
+            if (_userService.IsUserLoggedIn(User))
             {
                 return RedirectToAction("Index", "Home");
             }
-            catch(Exception e)
-            {
-                _logger.LogError(e, "Login failed");
-                return View("~/Views/Account/Login.cshtml");
-            }
-        }
 
-        [HttpGet]
-        public IActionResult Register()
-        {
             return View("~/Views/Account/Register.cshtml");
         }
 
         [HttpPost]
-        public IActionResult Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             try
             {
-                var newUser = new User
+                if (ModelState.IsValid)
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Gender = model.Gender,
-                    EmailAddress = model.Email,
-                    Password = model.Password,
-                    Address = model.Address,
-                    PhoneNumber = model.PhoneNumber,
-                    UserRoleId = (int)UserRoleType.Client,
-                };
+                    var result = await _userService.Register(model);
+                    if (result.Succeeded)
+                    {
+                        _logger.LogInformation("User created a new account with password.");
+                        _notyf.AddSuccessToastMessage("Congratulations, your account has been created. Please log in!");
+                        return RedirectToAction("Login");
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
 
-                //_context.Users.Add(newUser);
-                //_context.SaveChanges();
-
-                return RedirectToAction("Login");
+                _notyf.AddErrorToastMessage("There were some errors during registration. Please try again!");
+                return View(model);
             }
             catch (Exception e)
             {
                 _logger.LogError(e, "Register failed");
+                _notyf.AddErrorToastMessage("There were some errors during registration. Please try again!");
                 return View("~/Views/Account/Register.cshtml");
             }
         }
 
         [HttpGet]
-        public IActionResult Profile(int userId)
+        public IActionResult Login()
         {
+            if (_userService.IsUserLoggedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View("~/Views/Account/Login.cshtml");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var result = await _userService.Login(model);
+                    if(result.Succeeded)
+                    {
+                        _notyf.AddSuccessToastMessage("Succesfully logged in! Welcome " + model.Email + "!");
+                        return RedirectToAction("Index", "Home");
+                    }
+                    ModelState.AddModelError("", "Invalid login attempt");
+                }
+                _notyf.AddErrorToastMessage("Email or password are incorrect. Please try again!");
+                return RedirectToAction("Login");
+            }
+            catch
+            {
+                _notyf.AddErrorToastMessage("Email or password are incorrect. Please try again!");
+                return View("~/Views/Account/Login.cshtml");
+            }
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _userService.Logout();
+            _notyf.AddSuccessToastMessage("Succesfully logged out!");
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Profile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userRole = User.FindFirstValue(ClaimTypes.Role);
+
             var user = _userService.GetUser(userId);
 
             var model = new ProfileViewModel
             {
-                UserId = user.UserId,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Gender = user.Gender,
-                EmailAddress = user.EmailAddress,
+                EmailAddress = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 Address = user.Address,
+                Photo = user.Photo,
+                Role = userRole,
             };
 
             return View("~/Views/Account/Profile.cshtml", model);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult EditProfile(ProfileViewModel profile)
         {
             try
             {
-                _userService.Edit(profile);
-                return RedirectToAction("EditProfile", profile.UserId);
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                _userService.Edit(profile, userId);
+                return RedirectToAction("Profile");
             }
             catch (Exception e)
             {

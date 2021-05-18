@@ -1,5 +1,6 @@
 ﻿@using CakeShop.Web.Models.Product
 @using CakeShop.Web.Common.Enums
+@using System.Security.Claims
 
 @model ProductViewModel
 
@@ -21,12 +22,23 @@
                     <h2 class="card-cake-title">@Model.ProductName</h2>
                     <span class="card-cake-description subtle">
                         <div>
-                            <h2>Ingredients &nbsp;&nbsp; <button class="btn btn-primary font-custom" type="button" onclick="window.location.href='@Url.Action("AddProductIngredient", "Product", new { productId = Model.ProductId})'">Add Ingredient</button></h2>
+                            <h2>Ingredients &nbsp;&nbsp;
+                            @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Role) != "Client")
+                            {
+                                <button class="btn btn-primary font-custom" type="button" onclick="window.location.href='@Url.Action("AddProductIngredient", "Product", new { productId = Model.ProductId })'">Add Ingredient</button>
+                            }
+                            </h2>
                             <hr>
                             <ul>
                                 @foreach (var ingredient in Model.Ingredients)
                                 {
-                                <li>@ingredient.IngredientName - @ingredient.Quantity grams &nbsp;&nbsp; <button class="btn" type="button" onclick="window.location.href='@Url.Action("DeleteIngredient", "Product", new {productId = Model.ProductId, ingredientId = ingredient.IngredientId})'">x</button></li>
+                                    <li>
+                                    @ingredient.IngredientName - @ingredient.Quantity grams &nbsp;&nbsp;
+                                    @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Role) != "Client")
+                                    {
+                                        <button class="btn" type="button" onclick="window.location.href='@Url.Action("DeleteIngredient", "Product", new { productId = Model.ProductId, ingredientId = ingredient.IngredientId })'">x</button>
+                                    }
+                                    </li>
                                 }
                             </ul>
                         </div>
@@ -36,7 +48,10 @@
                         </div>
                         <div>
                             <button class="btn btn-primary" type="button"><i class="fa fa-shopping-cart"></i></button>
-                            <button class="btn btn-primary" type="button"><i class="fa fa-trash" onclick="window.location.href='@Url.Action("DeleteProduct", "Product", new {productId = Model.ProductId, productTypeId = Model.ProductTypeId})'"></i></button>
+                            @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Role) != "Client")
+                            {
+                                <button class="btn btn-primary" type="button"><i class="fa fa-trash" onclick="window.location.href='@Url.Action("DeleteProduct", "Product", new { productId = Model.ProductId, productTypeId = Model.ProductTypeId })'"></i></button>
+                            }
                         </div>
                     </span>
                 </form>
