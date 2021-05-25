@@ -37,6 +37,7 @@ namespace CakeShop.Web
             services.AddScoped<IRepository<User>, Repository<User>> ();
             services.AddScoped<IRepository<Product>, ProductRepository>();
             services.AddScoped<IRepository<Order>, OrderRepository>();
+            services.AddScoped<IRepository<OrderItem>, Repository<OrderItem>>();
             services.AddScoped<IRepository<ProductIngredient>, Repository<ProductIngredient>>();
             services.AddScoped<IRepository<Ingredient>, Repository<Ingredient>>();
 

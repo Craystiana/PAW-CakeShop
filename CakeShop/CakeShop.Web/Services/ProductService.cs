@@ -14,7 +14,9 @@ namespace CakeShop.Web.Services
         private readonly IRepository<ProductIngredient> _productIngredientRepository;
         private readonly IRepository<Ingredient> _ingredientRepository;
 
-        public ProductService(IRepository<Product> productRepository, IRepository<ProductIngredient> productIngredientRepository, IRepository<Ingredient> ingredientRepository)
+        public ProductService(IRepository<Product> productRepository, 
+                              IRepository<ProductIngredient> productIngredientRepository, 
+                              IRepository<Ingredient> ingredientRepository)
         {
             _productRepository = (ProductRepository)productRepository;
             _productIngredientRepository = productIngredientRepository;

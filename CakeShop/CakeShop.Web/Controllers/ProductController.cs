@@ -4,7 +4,7 @@ using CakeShop.Web.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
+using System.Security.Claims;
 using Enum = CakeShop.Web.Common.Enums;
 
 namespace CakeShop.Web.Controllers
@@ -14,12 +14,16 @@ namespace CakeShop.Web.Controllers
         private readonly ILogger<ProductController> _logger;
         private readonly ProductService _productService;
         private readonly IngredientService _ingredientService;
+        private readonly UserService _userService;
+        private readonly OrderService _orderService;
 
-        public ProductController(ILogger<ProductController> logger, ProductService productService, IngredientService ingredientService)
+        public ProductController(ILogger<ProductController> logger, ProductService productService, IngredientService ingredientService, UserService userService, OrderService orderService)
         {
             _logger = logger;
             _productService = productService;
             _ingredientService = ingredientService;
+            _userService = userService;
+            _orderService = orderService;
         }
 
         [HttpGet]
@@ -116,6 +120,13 @@ namespace CakeShop.Web.Controllers
         {
             _productService.DeleteProduct(productId);
             return RedirectToAction("List", new { productType = productTypeId });
+        }
+
+        public IActionResult AddToCart(int productId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _orderService.AddToCart(productId, userId);
+            return RedirectToAction("Details", new { productId = productId });
         }
     }
 }

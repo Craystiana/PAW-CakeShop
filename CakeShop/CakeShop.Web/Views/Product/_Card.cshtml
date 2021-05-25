@@ -20,6 +20,6 @@
             <h3 class="card__title">@Model.ProductName</h3>
         </a>
         <span class="card__by">@Model.ProductPrice RON</span>
-        <button style="margin-left: 100px" class="btn btn-primary" type="button"><i class="fa fa-shopping-cart"></i></button>
+        <button style="margin-left: 100px" class="btn btn-primary" type="button"><i class="fa fa-shopping-cart" onclick="window.location.href='@Url.Action("AddToCart", "Product", new { productId = Model.ProductId})'"></i></button>
     </div>
 </article>
